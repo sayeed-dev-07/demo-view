@@ -80,9 +80,10 @@ const ImgAnimation = ({
                     src={src}
                     alt={alt}
                     fill
+                    data-speed="auto"
                     sizes={sizes}
                     priority={priority}
-                    className="object-cover will-change-transform"
+                    className="object-top object-cover min-h-[130%] top-[-5%]   will-change-transform"
                 />
             </div>
         </div>
