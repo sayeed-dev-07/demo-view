@@ -32,9 +32,7 @@ const IntroOverlay = ({ shouldPlay, onComplete }) => {
         document.fonts.ready.then(() => {
             if (!isActive || !overlayRef.current || !textRef.current) return;
 
-
             split = new SplitText(textRef.current, { type: 'chars, words, lines', mask: 'lines' });
-
 
             gsap.set(split.chars, {
                 y: 40,
@@ -50,36 +48,37 @@ const IntroOverlay = ({ shouldPlay, onComplete }) => {
             });
 
             timeline
+
                 .to(split.chars, {
                     y: 0,
                     autoAlpha: 1,
                     rotationX: 0,
-                    duration: 0.8,
-                    stagger: 0.03,
+                    duration: 0.5,
+                    stagger: 0.015,
                     ease: 'power4.out'
                 })
 
 
                 .to(textRef.current, {
                     scale: 1.05,
-                    duration: 1.5,
+                    duration: 1,
                     ease: 'none'
-                }, "-=0.5")
+                }, "-=0.3")
 
 
                 .to(textRef.current, {
                     autoAlpha: 0,
                     y: -20,
-                    duration: 0.4,
+                    duration: 0.3,
                     ease: 'power2.out'
                 }, "-=0.2")
 
 
                 .to(overlayRef.current, {
                     yPercent: -100,
-                    duration: 1,
+                    duration: 0.6,
                     ease: 'expo.inOut',
-                }, "-=0.4");
+                }, "-=0.2");
         });
 
         return () => {
@@ -98,7 +97,6 @@ const IntroOverlay = ({ shouldPlay, onComplete }) => {
             aria-label="Intro animation"
         >
             <div className="overflow-hidden p-4">
-
                 <h1
                     ref={textRef}
                     className="m-0 invisible opacity-0 text-3xl md:text-5xl lg:text-7xl font-light tracking-tighter text-gray-950 text-center"
