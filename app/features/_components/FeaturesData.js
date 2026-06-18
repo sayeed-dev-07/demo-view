@@ -5,34 +5,34 @@ export const featuresData = {
         subtitle: "The ultimate estimating engine designed to scale your business.",
         image: {
             src: "https://images.unsplash.com/photo-1557671009-600c3a1973ca?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            alt: "Roofing professionals working on site"
+            alt: "EraKit Dashboard Overview"
         }
     },
     list: [
         {
             id: "01",
-            title: "Quick Estimate Creation",
-            description: "Generate precise, professional roofing estimates in minutes. Eliminate manual calculations and reduce mathematical errors."
+            title: "Real-Time Dashboard",
+            description: "Monitor total generated estimates and track active client requests instantly. Keep your finger on the pulse of your daily operations."
         },
         {
             id: "02",
-            title: "Unlimited Sales Teams",
-            description: "Scale your business without limits. Add unlimited users and salespeople to your account under one unified system."
+            title: "Vast Material Library",
+            description: "Access predefined manufacturer specifications or import your own system layouts. Manage your entire inventory and cost classifications effortlessly."
         },
         {
             id: "03",
-            title: "Instant Sharable Links",
-            description: "Close deals faster. Send interactive, professional estimates directly via SMS or email for instant mobile approval."
+            title: "Ready-Made Presets",
+            description: "Stop rebuilding quotes from scratch. Group standard materials into complete systems to generate complex estimates in seconds."
         },
         {
             id: "04",
-            title: "Ready-Made Presets",
-            description: "Stop rebuilding quotes from scratch. Save your standard material lists, waste factors, and pitch multipliers."
+            title: "Advanced Condition Modifiers",
+            description: "Configure exact financial multipliers, base labor costs, steep pitch surcharges, and waste percentages to protect your profit margins."
         },
         {
             id: "05",
-            title: "Plug & Play Engine",
-            description: "Embed EraKit directly into your existing website to capture leads instantly and deliver automated, branded quotes."
+            title: "Total Brand Control",
+            description: "Upload your high-resolution logo and customize all public-facing business parameters to ensure every proposal represents your brand flawlessly."
         }
     ]
 };

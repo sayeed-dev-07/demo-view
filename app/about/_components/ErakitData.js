@@ -3,46 +3,72 @@ export const aboutErakitData = {
     title: "About",
     subtitle: "EraKit",
     image: {
-      src: "https://images.unsplash.com/photo-1780849327888-cb6e5e6b9cc7?q=80&w=1170&auto=format&fit=crop",
-      alt: "Minimalist architectural space"
+      src: "/aboutImg/img6.png", // Dashboard Overview
+      alt: "EraKit Dashboard Interface"
     }
   },
-  section2: {
-    heading: "Precision meets efficiency.",
-    subheading: "The ultimate estimating engine.",
-    image: {
-      src: "https://images.unsplash.com/photo-1763665814605-a6489a3bf2a0?q=80&w=1470&auto=format&fit=crop",
-      alt: "Contractor looking at EraKit estimate on site"
+  sections: [
+    {
+      id: "s1",
+      heading: "A vast material library.",
+      subheading: "Manage everything in one place.",
+      image: {
+        src: "/aboutImg/img1.png", // Materials List
+        alt: "EraKit Material Library"
+      },
+      paragraphs: [
+        "Manage your entire material catalog and custom presets seamlessly.",
+        "Choose from our comprehensive library of predefined manufacturer specifications or import your own system layouts to ensure your estimates are always perfectly costed."
+      ]
     },
-    paragraphs: [
-      "In an industry where time is money, we wanted to create a system that values both.",
-      "EraKit bridges the gap between complex material calculations and instant, professional client proposals.",
-      "Configure your pricing parameters once—from steep pitch surcharges to exact drip edge costs—and let the platform handle the heavy lifting."
-    ]
-  },
-  section3: {
-    paragraphs: [
-      "Manage your entire material catalog and custom presets in one place.",
-      "Whether you are generating a quick PDF for a homeowner or sending a live, interactive link, the presentation is always flawless.",
-      "Your estimates, completely automated."
-    ],
-    imageTopRight: {
-      src: "https://images.unsplash.com/photo-1780445392484-5fb7d5610708?q=80&w=1470&auto=format&fit=crop",
-      alt: "EraKit software interface"
+    {
+      id: "s2",
+      heading: "Intelligent presets.",
+      subheading: "Automate your workflows.",
+      image: {
+        src: "/aboutImg/img3.png", // Presets
+        alt: "EraKit Material Presets"
+      },
+      paragraphs: [
+        "Group individual items into comprehensive build systems, like complete roofing packages.",
+        "Apply proven preset templates instantly, ensuring absolute consistency across your entire sales team and eliminating manual entry errors."
+      ]
     },
-    imageBottomRight: {
-      src: "https://images.unsplash.com/photo-1635424709961-f3a150459ad4?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      alt: "Team collaboration"
+    {
+      id: "s3",
+      heading: "Precision meets efficiency.",
+      subheading: "Advanced condition modifiers.",
+      image: {
+        src: "/aboutImg/img4.png", // Conditions
+        alt: "EraKit Condition Settings"
+      },
+      paragraphs: [
+        "In an industry where time is money, we wanted to create a system that values both.",
+        "Configure your pricing parameters once—from steep pitch surcharges to exact drip edge costs—and let the platform handle the heavy lifting to protect your margins."
+      ]
+    },
+    {
+      id: "s4",
+      heading: "Your brand, customized.",
+      subheading: "Flawless presentation.",
+      image: {
+        src: "/aboutImg/img5.png", // Customization
+        alt: "EraKit Customization and Branding"
+      },
+      paragraphs: [
+        "Configure your identity parameters and public canvas layouts easily.",
+        "Whether you are generating a quick PDF for a homeowner or sending a live, interactive link, the presentation is always flawlessly matched to your business identity."
+      ]
     }
-  },
-  section4: {
-    paragraphs: [
-      "More than just a dashboard, EraKit is a powerful plug-in engine. Embed our tools directly onto your own website to capture leads and deliver accurate, branded quotes automatically."
-    ],
+  ],
+  pluginSection: {
     badgeLabel: "EraKit OS",
     image: {
-      src: "https://images.unsplash.com/photo-1634750009079-6bf7bede038b?q=80&w=1470&auto=format&fit=crop",
-      alt: "Contracting team using EraKit plugin on a tablet"
-    }
+      src: "/aboutImg/img7.png", // Billing & Credits
+      alt: "EraKit Billing and Credits Interface"
+    },
+    paragraphs: [
+      "More than just a dashboard, EraKit is a powerful plug-in engine. Embed our tools directly onto your own website to capture leads and deliver accurate, branded quotes automatically while managing your credits with ease."
+    ]
   }
 };

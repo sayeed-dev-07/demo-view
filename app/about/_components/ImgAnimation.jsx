@@ -73,17 +73,17 @@ const ImgAnimation = ({
     }, { scope: containerRef });
 
     return (
-        <div ref={containerRef} className={`relative w-full ${className}`}>
-            <div ref={wrapRef} className="w-full h-full relative overflow-hidden">
+        <div ref={containerRef} className={`w-full ${className}`}>
+            <div ref={wrapRef} className="w-full relative overflow-hidden">
                 <Image
                     ref={imgRef}
                     src={src}
                     alt={alt}
-                    fill
-                    data-speed="auto"
+                    width={1920}
+                    height={1080}
                     sizes={sizes}
                     priority={priority}
-                    className="object-top object-cover min-h-[130%] top-[-5%]   will-change-transform"
+                    className="w-full h-auto object-contain block will-change-transform"
                 />
             </div>
         </div>
