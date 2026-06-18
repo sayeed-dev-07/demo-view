@@ -1,19 +1,32 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { createPortal } from 'react-dom'; // <-- Added React Portal
+import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import TextAnimation from './TextAnimation';
 import ImgAnimation from './ImgAnimation';
 import { aboutErakitData } from './ErakitData';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-// import { ScrollSmoother } from 'gsap/ScrollSmoother'; // Uncomment if you are using Smoother wrapper
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const ErakitAbout = () => {
     const data = aboutErakitData;
     const mainRef = useRef(null);
+
+    // --- MODAL STATE & REFS ---
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [mounted, setMounted] = useState(false); // <-- Needed for Next.js Portals
+    const modalRef = useRef(null);
+    const modalImgWrapperRef = useRef(null);
+
+    // Ensure we are on the client before attempting to use document.body
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useGSAP(() => {
         gsap.to(mainRef.current, {
@@ -23,13 +36,37 @@ const ErakitAbout = () => {
         });
     }, { scope: mainRef });
 
+    // Modal In-Animation
+    useGSAP(() => {
+        if (selectedImage && modalRef.current && modalImgWrapperRef.current) {
+            gsap.fromTo(modalRef.current,
+                { autoAlpha: 0 },
+                { autoAlpha: 1, duration: 0.4, ease: 'power3.out' }
+            );
+            gsap.fromTo(modalImgWrapperRef.current,
+                { scale: 0.85, autoAlpha: 0, y: 20 },
+                { scale: 1, autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(1.2)', delay: 0.1 }
+            );
+        }
+    }, { dependencies: [selectedImage] });
+
+    // Modal Out-Animation
+    const handleCloseModal = () => {
+        gsap.to(modalImgWrapperRef.current, {
+            scale: 0.85, autoAlpha: 0, y: 20, duration: 0.3, ease: 'power2.in'
+        });
+        gsap.to(modalRef.current, {
+            autoAlpha: 0, duration: 0.4, ease: 'power2.in',
+            onComplete: () => setSelectedImage(null)
+        });
+    };
+
     return (
-        <div>
-            <div ref={mainRef} className='invisible bg-[#f4f4f4] text-gray-900 min-h-screen selection:bg-black selection:text-white overflow-hidden font-sans'>
+        <>
+            <div ref={mainRef} className='invisible bg-[#f4f4f4] text-gray-900 min-h-screen selection:bg-black selection:text-white overflow-hidden font-sans relative'>
 
                 {/* --- HERO SECTION --- */}
                 <div className='h-screen w-full flex flex-col lg:flex-row'>
-                    {/* Left side */}
                     <div className='w-full lg:w-1/2 flex flex-col px-3 lg:px-12 py-6 lg:py-[5%] h-full gap-y-4 justify-end'>
                         <TextAnimation
                             Scroll={false}
@@ -44,15 +81,17 @@ const ErakitAbout = () => {
                         />
                     </div>
 
-                    {/* Right side */}
-                    <div className='w-full lg:w-1/2 h-[70vh]  lg:h-full relative mt-8 lg:mt-0 p-4 lg:p-12 flex items-center justify-center'>
-                        <div className="w-full h-fit relative overflow-hidden ">
+                    <div className='w-full lg:w-1/2 h-[70vh] lg:h-full relative mt-8 lg:mt-0 p-4 lg:p-12 flex items-center justify-center'>
+                        <div
+                            className="w-full h-fit relative overflow-hidden cursor-pointer"
+                            onClick={() => setSelectedImage(data.hero.image)}
+                        >
                             <ImgAnimation
                                 scroll={false}
                                 src={data.hero.image.src}
                                 alt={data.hero.image.alt}
                                 priority={true}
-                                className='w-full h-full object-cover object-top'
+                                className='w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-500'
                             />
                         </div>
                     </div>
@@ -68,16 +107,17 @@ const ErakitAbout = () => {
                                 key={section.id}
                                 className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-20 ${isEven ? '' : 'lg:flex-row-reverse'}`}
                             >
-                                {/* Image Box */}
-                                <div className='w-full lg:w-7/12 aspect-[16/10] relative '>
+                                <div
+                                    className='w-full lg:w-7/12 aspect-[16/10] relative cursor-pointer'
+                                    onClick={() => setSelectedImage(section.image)}
+                                >
                                     <ImgAnimation
                                         src={section.image.src}
                                         alt={section.image.alt}
-                                        className='w-full h-full object-cover object-top'
+                                        className='w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-500'
                                     />
                                 </div>
 
-                                {/* Text Box */}
                                 <div className='w-full lg:w-5/12 flex flex-col gap-8'>
                                     <div className='flex flex-col gap-2'>
                                         <TextAnimation
@@ -108,11 +148,14 @@ const ErakitAbout = () => {
 
                 {/* --- BOTTOM PLUGIN BLOCK --- */}
                 <div className='max-w-[1600px] mx-auto px-4 lg:px-12 py-12 lg:py-24 flex flex-col items-center text-center'>
-                    <div className='w-full lg:w-10/12 aspect-[16/9] relative mb-16 lg:mb-24'>
+                    <div
+                        className='w-full lg:w-10/12 aspect-[16/9] relative mb-16 lg:mb-24 cursor-pointer'
+                        onClick={() => setSelectedImage(data.pluginSection.image)}
+                    >
                         <ImgAnimation
                             src={data.pluginSection.image.src}
                             alt={data.pluginSection.image.alt}
-                            className='w-full h-full object-cover object-top'
+                            className='w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-500'
                         />
                     </div>
 
@@ -130,7 +173,43 @@ const ErakitAbout = () => {
                 </div>
 
             </div>
-        </div>
+
+            {/* --- REACT PORTAL IMAGE MODAL --- */}
+            {mounted && createPortal(
+                <div
+                    ref={modalRef}
+                    className={`fixed inset-0 z-[9999] w-screen h-[100dvh] overflow-hidden flex items-center justify-center bg-black/90 backdrop-blur-sm ${selectedImage ? 'visible' : 'invisible'}`}
+                    onClick={handleCloseModal}
+                    style={{ position: 'fixed', top: 0, left: 0 }} // Hardcoded style just to guarantee fixed behavior
+                >
+                    <button
+                        className="absolute top-6 right-6 md:top-10 md:right-10 text-white/50 hover:text-white text-5xl font-light transition-colors z-50 cursor-pointer"
+                        onClick={handleCloseModal}
+                        aria-label="Close modal"
+                    >
+                        &times;
+                    </button>
+
+                    {selectedImage && (
+                        <div
+                            ref={modalImgWrapperRef}
+                            className="relative w-[95vw] h-[95dvh] md:w-[85vw] md:h-[85dvh]"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <Image
+                                src={selectedImage.src}
+                                alt={selectedImage.alt || 'Expanded view'}
+                                fill
+                                sizes="(max-width: 768px) 95vw, 85vw"
+                                priority
+                                className="object-contain drop-shadow-2xl rounded-sm"
+                            />
+                        </div>
+                    )}
+                </div>,
+                document.body
+            )}
+        </>
     );
 };
 
