@@ -45,7 +45,7 @@ const ErakitAbout = () => {
                     </div>
 
                     {/* Right side */}
-                    <div data-speed='auto' className='w-full lg:w-1/2 h-[70vh]  lg:h-full relative mt-8 lg:mt-0 p-4 lg:p-12 flex items-center justify-center'>
+                    <div className='w-full lg:w-1/2 h-[70vh]  lg:h-full relative mt-8 lg:mt-0 p-4 lg:p-12 flex items-center justify-center'>
                         <div className="w-full h-fit relative overflow-hidden ">
                             <ImgAnimation
                                 scroll={false}
