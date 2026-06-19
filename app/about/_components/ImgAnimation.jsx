@@ -16,7 +16,7 @@ const ImgAnimation = ({
     src,
     alt,
     className = "",
-    sizes = "(max-width: 768px) 100vw, 50vw",
+    sizes = "(max-width: 768px) 100vw, 100vw",
     priority = false,
     scroll = true
 }) => {

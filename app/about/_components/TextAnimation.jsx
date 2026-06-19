@@ -26,29 +26,25 @@ const TextAnimation = ({ text, style, Scroll = true, delay = 0 }) => {
 
             let mm = gsap.matchMedia();
 
-            // Define our breakpoints and accessibility queries
+
             mm.add({
                 isDesktop: "(min-width: 768px)",
-                isMobile: "(max-width: 767px)",
                 reduceMotion: "(prefers-reduced-motion: reduce)"
             }, (context) => {
                 let { isDesktop, reduceMotion } = context.conditions;
 
-                // ACCESSIBILITY: If the user prefers reduced motion, just show the text
-                if (reduceMotion) {
+
+                if (reduceMotion || !isDesktop) {
                     gsap.set(splitLines.lines, { yPercent: 0, autoAlpha: 1 });
-                    return; 
+                    return;
                 }
 
-                // PERFORMANCE: Snappier staggers on mobile prevent long scrolling jank
-                const staggerValue = isDesktop ? 0.1 : 0.04;
-                const durationValue = isDesktop ? 1 : 0.8;
 
                 const animationConfig = {
                     delay: delay,
                     yPercent: 105,
-                    stagger: staggerValue,
-                    duration: durationValue,
+                    stagger: 0.1,
+                    duration: 1,
                     ease: 'power3.out'
                 };
 
@@ -66,7 +62,6 @@ const TextAnimation = ({ text, style, Scroll = true, delay = 0 }) => {
             });
         });
 
-        // Cleanup function for SplitText
         return () => {
             if (splitLines) splitLines.revert();
         };

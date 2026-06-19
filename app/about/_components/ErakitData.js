@@ -62,9 +62,9 @@ export const aboutErakitData = {
     }
   ],
   pluginSection: {
-    badgeLabel: "EraKit OS",
+    badgeLabel: "EraKit",
     image: {
-      src: "/aboutImg/img7.png", // Billing & Credits
+      src: "/aboutImg/img7.png", 
       alt: "EraKit Billing and Credits Interface"
     },
     paragraphs: [

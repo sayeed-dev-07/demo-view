@@ -120,7 +120,7 @@ export default function EditorialHero({ playAnimations }) {
                     </div>
                     <div className="hero-btn invisible opacity-0 w-full sm:w-auto">
                         <AnimatedButton
-                            text="Request for Demo"
+                            text="Request Demo"
                             variant="secondary"
                             className="w-full sm:w-auto"
                         />
@@ -133,7 +133,7 @@ export default function EditorialHero({ playAnimations }) {
             <div className="order-3 lg:order-none w-full lg:w-1/4 flex flex-col items-start lg:items-end justify-center z-10 mt-12 lg:mt-0 gap-8">
                 <div className="flex flex-col items-start lg:items-end gap-5">
                     <DirectionalHoverLink href="/about" text="About" />
-                    <DirectionalHoverLink href="/features" text="Features" />
+                    {/* <DirectionalHoverLink href="/features" text="Features" /> */}
                 </div>
 
                 <div className="flex flex-col items-start lg:items-end gap-4 mt-2 w-full">
